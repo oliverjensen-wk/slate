@@ -1,5 +1,11 @@
 FROM alpine:3.7
 
+# bring in the code, cannot be at root, don't want name collision with middleman build dir (it's just confusing)
+COPY . /local-build
+
+# change to build dir
+WORKDIR /local-build
+
 # We need to install ruby first
 # skip installing gem documentation
 RUN mkdir -p /usr/local/etc \
@@ -108,12 +114,6 @@ ENV BUNDLE_PATH="$GEM_HOME" \
 ENV PATH $BUNDLE_BIN:$PATH
 RUN mkdir -p "$GEM_HOME" "$BUNDLE_BIN" \
 	&& chmod 777 "$GEM_HOME" "$BUNDLE_BIN"
-
-# bring in the code, cannot be at root, don't want name collision with middleman build dir (it's just confusing)
-COPY . /local-build
-
-# change to build dir
-WORKDIR /local-build
 
 # open up port 8000
 EXPOSE 8000
