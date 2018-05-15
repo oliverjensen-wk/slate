@@ -1,10 +1,8 @@
 FROM alpine:3.7
 
 # bring in the code, cannot be at root, don't want name collision with middleman build dir (it's just confusing)
-COPY . /local-build
-
-# change to build dir
 WORKDIR /local-build
+COPY . /local-build
 
 # We need to install ruby first
 # skip installing gem documentation
