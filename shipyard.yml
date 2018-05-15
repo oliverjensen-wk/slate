@@ -1,0 +1,18 @@
+---
+base: 'ubuntu/trusty'
+
+apt:
+  packages:
+    - oracle-java8-installer
+
+after_install:
+  - cp /build/smithy/build/cerebral.jar /opt/cerebral.jar
+  # Create a directory to hold master config
+  - mkdir -p /config
+  - chown root:root /config
+  - chmod 755 /config
+
+expose:
+  - '8080'
+
+cmd: ["java", "-jar", "/opt/cerebral.jar"]
