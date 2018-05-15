@@ -10,7 +10,8 @@ COPY . .
 EXPOSE 8000
 
 # install dependencies
-RUN apk add --update nodejs g++ make
+RUN apt-get update
+RUN apt-get install -y node npm g++ make
 RUN bundle install
 
 # so the next command succeeds
