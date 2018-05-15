@@ -9,6 +9,9 @@ EXPOSE 8000
 # install dependencies
 RUN apk add --update nodejs g++ make
 RUN bundle install
+
+# so the next command succeeds
+RUN npm config set unsafe-perm true
 RUN npm install http-server -g
 
 # build the app which puts the compiled html, etc into the build directory
