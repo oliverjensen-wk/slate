@@ -1,4 +1,4 @@
-FROM ruby:2.3-alpine
+FROM ruby:2.3-jessie
 
 # bring in the code, cannot be at root, don't want name collision with middleman build dir (it's just confusing)
 WORKDIR /local-build
