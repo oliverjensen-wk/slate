@@ -11,7 +11,8 @@ EXPOSE 8000
 
 # install dependencies
 RUN apt-get update
-RUN apt-get install -y node npm g++ make
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
+RUN apt-get install -y nodejs
 RUN bundle install
 
 # so the next command succeeds
