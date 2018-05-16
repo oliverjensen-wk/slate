@@ -27,11 +27,8 @@ RUN apk add --update nodejs
 RUN npm config set unsafe-perm true
 RUN npm install http-server -g
 
-COPY --from=0 /local-build/build/* .
-
-# move the static files to a subdir for serving
-RUN mkdir -p s/cerebral-docs
-RUN mv build/* s/cerebral-docs/
+# bring the static html in
+COPY --from=0 /local-build/build/ s/cerebral-docs/
 
 # open up port 8000
 EXPOSE 8000
