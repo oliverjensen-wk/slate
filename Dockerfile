@@ -18,7 +18,7 @@ RUN bundle exec middleman build --clean
 FROM alpine:latest
 
 # new workdir
-WORKDIR /root/
+WORKDIR /static/
 
 # get node ready
 RUN apk add --update nodejs
