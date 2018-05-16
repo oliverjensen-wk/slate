@@ -1,4 +1,5 @@
-FROM ruby:2.3-jessie
+#build stage
+FROM ruby:2.3-alpine
 
 # bring in the code, cannot be at root, don't want name collision with middleman build dir (it's just confusing)
 WORKDIR /local-build
@@ -10,17 +11,26 @@ COPY . .
 EXPOSE 8000
 
 # install dependencies
-RUN apt-get update
-RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
-RUN apt-get install -y nodejs
+RUN apk add --update nodejs g++ make
 RUN bundle install
+
+# build the app which puts the compiled html, etc into the build directory
+RUN bundle exec middleman build --clean
+
+# run stage
+FROM alpine:latest
+
+# new workdir
+WORKDIR /root/
+
+# get node ready
+RUN apk add --update nodejs
 
 # so the next command succeeds
 RUN npm config set unsafe-perm true
 RUN npm install http-server -g
 
-# build the app which puts the compiled html, etc into the build directory
-RUN bundle exec middleman build --clean
+COPY --from=0 /local-build .
 
 # move the static files to a subdir for serving
 RUN mkdir -p s/cerebral-docs
