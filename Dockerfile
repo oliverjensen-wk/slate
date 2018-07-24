@@ -15,7 +15,7 @@ RUN bundle install
 RUN bundle exec middleman build --clean
 
 # run stage
-FROM alpine:latest
+FROM alpine:3.7
 
 # new workdir
 WORKDIR /static/
