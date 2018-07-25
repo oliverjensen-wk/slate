@@ -35,6 +35,14 @@ html, body {
   height: 100%;
   -webkit-text-size-adjust: none; /* Never autoresize text */
 }
+h1, h2, h3, h5 {
+  color: $blue-100;
+  font-weight: bold;
+}
+
+h4 {
+  color: $grey-100;
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 // TABLE OF CONTENTS
@@ -74,31 +82,31 @@ html, body {
   // This is the logo at the top of the ToC
   .logo {
     display: block;
-    max-width: 100%;
-    margin-bottom: $logo-margin;
+    max-width: 70%;
+    margin: $logo-mar;
   }
 
   &>.search {
     position: relative;
 
     input {
-      background: $nav-bg;
+      background: $grey-30;
       border-width: 0 0 1px 0;
       border-color: $search-box-border-color;
-      padding: 6px 0 6px 20px;
+      padding: 6px 0 6px 30px;
       box-sizing: border-box;
-      margin: $nav-v-padding $nav-padding;
-      width: $nav-width - 30;
+      margin: 10px 5px;
+      width: 95%;
       outline: none;
-      color: $nav-text;
-      border-radius: 0; /* ios has a default border radius */
+      -webkit-border-radius: 50px;
+      -moz-border-radius: 50px;
+      border-radius: 50px;
     }
 
     &:before {
       position: absolute;
       top: 17px;
       left: $nav-padding;
-      color: $nav-text;
       @extend %icon-search;
     }
   }
