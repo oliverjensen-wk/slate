@@ -10,6 +10,7 @@ COPY . .
 # install dependencies
 RUN apk add --update nodejs g++ make
 RUN bundle install
+RUN npm config set unsafe-perm true
 RUN npm install -g widdershins@3.6.0
 
 # generate documentation
