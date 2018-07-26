@@ -10,6 +10,13 @@ COPY . .
 # install dependencies
 RUN apk add --update nodejs g++ make
 RUN bundle install
+RUN npm install -g widdershins@3.6.0
+
+# generate documentation
+RUN widdershins https://h.app.wdesk.com/s/cerebral/v2/api-docs -o source/includes/_swagger.md
+
+# remove header from swagger
+RUN tail -n +19 < source/includes/_swagger.md > source/includes/_swagger.md
 
 # build the app which puts the compiled html, etc into the build directory
 RUN bundle exec middleman build --clean
