@@ -24,3 +24,6 @@ doc/
 .idea/
 s/
 .vscode
+
+# generated files
+source/includes/_swagger.md

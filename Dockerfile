@@ -15,7 +15,7 @@ RUN npm install -g widdershins@3.6.0
 # generate documentation
 RUN widdershins https://h.app.wdesk.com/s/cerebral/v2/api-docs -o source/includes/_swagger.md
 
-# remove header from swagger
+# remove header from swagger, this is ugly but widdershins adds meta we don't need, the size of the meta (in lines) is deterministic so we know how many to remove
 RUN tail -n +19 < source/includes/_swagger.md > source/includes/_swagger.md
 
 # build the app which puts the compiled html, etc into the build directory
